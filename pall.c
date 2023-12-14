@@ -1,36 +1,25 @@
 #include "monty.h"
-#include <stdio.h>
 
-void pall(Stack *stack)
+void pall()
 {
 	int i;
 	char buffer[20];
-	int num = stack->items[i];
-	int temp = num;
-	int count = 0;
-	int digit = num % 10;
-
-	for (i = stack->top; i >= 0; i--)
+	int num;
+	int index;
+	for (i = nop; i >= 0; i--)
 	{
-		while (temp != 0)
+		num = Stack[i];
+		index = 0;
+		do
 		{
-			count++;
-			temp /= 10;
+			buffer[index++] = '0' + (num % 10);
+			num /= 10;
 		}
-		if (num == 0)
+		while (num != 0);
+		while (index > 0)
 		{
-			buffer[0] = '0';
-			count = 1;
+			write(STDOUT_FILENO, &buffer[--index], 1);
 		}
-		else
-		{
-			while (num != 0)
-			{
-				buffer[--count] = '0' + digit;
-				num /= 10;
-			}
-		}
-		buffer[count++] = '\n';
-		write(STDOUT_FILENO, buffer, count);
+		write(STDOUT_FILENO, "\n", 1);
 	}
 }

@@ -2,19 +2,12 @@
 
 void pint(Stack *stack)
 {
-	char buffer[20];
-	int length;
 	if (stack->top == -1)
 	{
 		write(STDOUT_FILENO, "L<line_number>: can't pint, stack empty\n", 39);
 		exit(EXIT_FAILURE);
 	}
-	intToString(stack->items[stack->top], buffer, sizeof(buffer));
-	length = 0;
-	while (buffer[length] != '\0')
-	{
-		length++;
-	}
+	char buffer[20];
+	int length = snprintf(buffer, sizeof(buffer), "%d\n", stack->items[stack->top]);
 	write(STDOUT_FILENO, buffer, length);
 }
-

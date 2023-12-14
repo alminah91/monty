@@ -9,18 +9,20 @@ typedef struct
 	int top;
 } Stack;
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
+void intToString(int value, char* buffer, int buffer_size);
 void initialize(Stack *stack);
 void push(Stack *stack, int value);
 int pop(Stack *stack);
 void swap(Stack *stack);
 void add(Stack *stack);
 void nop();
-void pall(Stack *stack);
+void pall();
 void pint(Stack *stack);
 int main();
 
